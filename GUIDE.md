@@ -3,15 +3,15 @@
 Bốn giờ, bảy chặng. Mốc thời gian là mốc thật, không phải gợi ý: chặng 5 chỉ mở
 sau khi cả lớp đã khoá nhãn.
 
-| Mốc | Chặng | Bạn làm gì |
-| --- | --- | --- |
-| 0:00-0:20 | 1 | Dựng skeleton label, tạo task CVAT |
-| 0:20-0:40 | 2 | Warm-up: gán 2 ảnh, tự soi bằng `visualize_pose.py` |
-| 0:40-2:10 | 3 | Gán 18 ảnh core còn lại |
-| 2:10-2:30 | 4 | Ba lượt kiểm, visibility report, kiểm chéo, **khoá nhãn** |
-| 2:30-3:10 | 5 | Nhận gold, chấm bằng OKS, rework |
-| 3:10-3:50 | 6 | Colab: fine-tune, visualize, đánh giá |
-| 3:50-4:00 | 7 | Báo cáo, commit, push |
+| Mốc      | Chặng | Bạn làm gì                                                         |
+| --------- | ------ | --------------------------------------------------------------------- |
+| 0:00-0:20 | 1      | Dựng skeleton label, tạo task CVAT                                  |
+| 0:20-0:40 | 2      | Warm-up: gán 2 ảnh, tự soi bằng`visualize_pose.py`              |
+| 0:40-2:10 | 3      | Gán 18 ảnh core còn lại                                           |
+| 2:10-2:30 | 4      | Ba lượt kiểm, visibility report, kiểm chéo,**khoá nhãn** |
+| 2:30-3:10 | 5      | Nhận gold, chấm bằng OKS, rework                                   |
+| 3:10-3:50 | 6      | Colab: fine-tune, visualize, đánh giá                              |
+| 3:50-4:00 | 7      | Báo cáo, commit, push                                               |
 
 ---
 
@@ -81,11 +81,11 @@ Hai màu cắt chéo nhau ở vai hay hông => bạn vừa đảo trái/phải.
 
 ### Ba trạng thái, hai câu hỏi
 
-| Bạn thấy khớp đó không? | Nó còn trong khung hình không? | Chọn | Trong CVAT | Ra file |
-| --- | --- | --- | --- | ---: |
-| Có | - | nhìn thấy rõ | không tick gì | `v = 2` |
-| Không, bị che | Còn | **vẫn đặt chấm** ở vị trí ước lượng | tick **Occluded** (`q`) | `v = 1` |
-| Không, ra ngoài mép ảnh | Không | **không đặt chấm** | tick **Outside** (`o`) | `v = 0` |
+| Bạn thấy khớp đó không? | Nó còn trong khung hình không? | Chọn                                                | Trong CVAT                     |   Ra file |
+| ----------------------------- | ---------------------------------- | ---------------------------------------------------- | ------------------------------ | --------: |
+| Có                           | -                                  | nhìn thấy rõ                                      | không tick gì                | `v = 2` |
+| Không, bị che               | Còn                               | **vẫn đặt chấm** ở vị trí ước lượng | tick**Occluded** (`q`) | `v = 1` |
+| Không, ra ngoài mép ảnh   | Không                             | **không đặt chấm**                         | tick**Outside** (`o`)  | `v = 0` |
 
 **Không bao giờ dùng `h` (Hidden).** Nó trông y hệt Outside trên màn hình nhưng
 không được lưu - điểm đó vẫn xuất ra `v = 2` ở vị trí cũ, sai mà không có một
@@ -170,14 +170,14 @@ python3 tools/evaluate_pose_annotations.py --pred dataset/labels/train \
 
 Script trả về OKS và một **danh sách lỗi đã gọi tên**. Sửa theo đúng thứ tự này:
 
-| Ưu tiên | Lỗi | Sửa thế nào |
-| ---: | --- | --- |
-| 1 | Đảo trái/phải | Đổi lại hai điểm. Nguy hiểm nhất vì augmentation lật ảnh dạy cái sai này hai lần |
-| 2 | Nhầm người | Đặt lại điểm về đúng cơ thể |
-| 3 | Thiếu/thừa người | Gán bổ sung, hoặc xoá skeleton thừa |
-| 4 | Xoá khớp bị che | Gán lại với `v = 1` và đặt chấm ước lượng |
-| 5 | Trượt hẳn | Kéo chấm về đúng khớp |
-| 6 | Lệch nhẹ | Sửa nếu còn thời gian. Ít hại nhất |
+| Ưu tiên | Lỗi                 | Sửa thế nào                                                                                 |
+| --------: | -------------------- | ---------------------------------------------------------------------------------------------- |
+|         1 | Đảo trái/phải    | Đổi lại hai điểm. Nguy hiểm nhất vì augmentation lật ảnh dạy cái sai này hai lần |
+|         2 | Nhầm người        | Đặt lại điểm về đúng cơ thể                                                          |
+|         3 | Thiếu/thừa người | Gán bổ sung, hoặc xoá skeleton thừa                                                       |
+|         4 | Xoá khớp bị che   | Gán lại với`v = 1` và đặt chấm ước lượng                                          |
+|         5 | Trượt hẳn         | Kéo chấm về đúng khớp                                                                    |
+|         6 | Lệch nhẹ           | Sửa nếu còn thời gian. Ít hại nhất                                                      |
 
 Bỏ qua hai mục `Cờ khác gold` và `Gold để v=0` - chúng không trừ điểm, xem mục cuối README.
 
@@ -195,7 +195,7 @@ sửa gì, điểm sau.
    - **Khuyến nghị:** commit và push nhãn/export/báo cáo vào fork của bạn, rồi dán URL HTTPS của fork
      vào `REPO_URL` ở cell 0 của notebook.
    - **Thay thế:** nén/upload hoặc mount thư mục `Day4-Lab/`.
-   Bật GPU: Runtime -> Change runtime type -> T4.
+     Bật GPU: Runtime -> Change runtime type -> T4.
 2. Mở `notebooks/day4_pose_finetune_yolo26.ipynb`, chạy từ cell 0 xuống dưới. Cell 0 không xoá hoặc
    ghi đè thư mục nào.
 3. Notebook sẽ: kiểm nhãn -> đo model gốc trên tập test -> fine-tune trên 20 ảnh của bạn
